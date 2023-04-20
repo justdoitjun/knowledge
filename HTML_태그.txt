@@ -1,0 +1,83 @@
+# HTML - input태그, unload, button, form 태그
+강사님이 말한 중요한 태그
+///0. HTML은   form, ul, span, table 태그 이 4가지가 가장 중요합니다./
+
+## 태그의 종류
+아주 크게 러프하게 말해서, 태그는 둘 중 하나다. input태그 혹은 그 밖의 태그. 
+- When? 사용자가 정보를 입력하게하고 싶을 때?
+=> input //  other tags  3총사 ( text Area ,  button,     )
+그중 button —> 이벤트 만들고 싶을 때 씀. 
+
+
+## Input 태그
+- name이 Key값이다. (물론 id= “” 를 써줄 수 있지만, 쓰지 말자)
+*태그의 name 값이 키(Key)*로 해서 값(Value)가 전송된다.
+즉, *request*에 값이 전달될 때 Map과 마찬가지로 *Key와 Value 쌍의 형식으로 데이터가 저장*된다.
+Id 써도 되긴 하는데 중복이 되면 안되어서…그냥 name을 더 많이 씀. 
+- input 3총사 : type, name, value
+```
+<input type = "text" name = "userid" value = "test"/>
+```
+- input태그에서 던져주는 값들은 대부분 String 자료형태로 넘어온다. 안 정했다 싶으면 모두 String으로 주고 받는다.
+
+
+## onload
+- 왜 쓰는가?
+자바스크립트는 인터프리터 언어이다. 
+생성도 안되었는데 함수를 호출할 위험이 있기 떄문이다. 
+
+## Button Tag
+ - button은 그 자체로 type=“submit”이다.  Submit은 서버로 보내버린다.
+ - type을 빼도 submit 된다. 
+ - <should> type=“button”으로 지정줘야한다. 
+ - 소위 말해, 이벤트 핸들러가 작동하는 태그이다.
+ - 다시 말하지만, 이벤트는 시스템에 다 정의되어있다. 
+
+## Form Tag
+- form 태그 안으로 덮지 않으면 서버로 정보를 보낼 수 없다. (Html)
+- attribute { ‘action’, ‘method’} 이건 html에 정해진 속성이다. 
+```
+$("#register_form").attr({
+    'action': '/registerimpl',
+    'method': 'post'
+});
+```
+
+
+
+A 태그 애용하면 계속 새로고침하는 문제
+
+모달은 그냥 html 태그 밖에다가 두자. 왜냐면 컨텐츠랑 헛갈릴 가능성  있어
+```
+</body>
+</html>
+---> 이렇게 밖에다 두겠다.
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+```
+
+
+
+
+
+
+
+
