@@ -1,14 +1,12 @@
 package newHW03;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class BattleShip {
-
+// main method
     public static void main(String[] args) {
         System.out.println("Welcome to Battleship!");
-        HashMap<Integer, Object > resultSave = new HashMap<>();
         int player = 0;
         int[][] player1resultHistory = new int[5][2];
         int[][] player2resultHistory = new int[5][2];
@@ -17,10 +15,10 @@ public class BattleShip {
         do {
             player++;
             System.out.printf("PLAYER %d, ENTER YOUR SHIPS’ COORDINATES.", player);
-            //String resultHistory = ""; //reusltHistory is String type variance.
+            //String resultHistory = ""; //resultHistory is String type variance.
             int[][] resultHistory = new int[5][2];
-            int input1 = 0;
-            int input2 = 0;
+            int input1;
+            int input2;
             //Num A
             int i = 1;//count number
             do {        // Each player location designation.
@@ -44,11 +42,11 @@ public class BattleShip {
                 }
             } while (i < 6);
 
-            //diplay
+            //display
             printBattleShip(printMap(player, resultHistory));
-            //save each opponent's cooridnates for preparing duel.
+            //save each opponent's coordinates for preparing duel.
             if(player == 1){
-               player1resultHistory = resultHistory; //save Coordinates data for preapring duel.
+               player1resultHistory = resultHistory; //save Coordinates data for preparing duel.
             }else if(player ==2){
                 player2resultHistory = resultHistory; //save Coordinates data for preparing duel.
             }
@@ -61,7 +59,7 @@ public class BattleShip {
         int[][] player2ResultHistory = new int[5][2];
         int cnt1 = 1;//count number
         int cnt2 = 1;//count number
-        int winStack1 = 0;  // Plyaer 1 has to get 5 points to win this game.
+        int winStack1 = 0;  // Player 1 has to get 5 points to win this game.
         int winStack2 = 0;
 
         char[][] player1duelHistory = new char[5][5];
@@ -137,17 +135,7 @@ public class BattleShip {
     }
 
 
-
-
-    public static boolean duelFireShots(int player, int[] aSingleShot, int[][] opponentsCoordinates){
-        for(int[] el : opponentsCoordinates){
-            if(Arrays.equals(el, aSingleShot)){
-                return true;
-            }
-        }
-        return false; // default : false - which means a shot doesn't hit the right coordinates.
-    };
-
+    //=================================================================================
 
     //(1) input Error check : whether It is invalid coordinates or have already putted on same spot.
     public static String checkInteger(int input1, int input2, int[][] resultHistory){
@@ -160,16 +148,14 @@ public class BattleShip {
         }
         for(int[] el : resultHistory){
             if(Arrays.equals(el, testInput) && el[0] != 0 && el[1] != 0){
-             // the reason why I check el's components is because I want to allow [0,0]
+             // the reason why I check el's components : because I want to allow [0,0]
                 Error = "E002"; //"You already have a ship there. Choose different coordinates."
             }
         }
         return Error;
     };
 
-
     //(2) To give char Array to printBattleShop methods
-
     private static char[][] printMap(int player, int[][] resultHistory){
         char[][] playerArray = new char[5][5];
         for(int num1=0; num1<5;num1++){
@@ -183,25 +169,35 @@ public class BattleShip {
         return playerArray;
     }
 
-    //(3) In the middle of duel, Use this method to print game boards to the console.
-    // You are able to see whose ship is hit.
+    //(3) shots Fired - when you shoot a shot, it returns whether you hit opponent's ship or not.
+    public static boolean duelFireShots(int player, int[] aSingleShot, int[][] opponentsCoordinates){
+        for(int[] el : opponentsCoordinates){
+            if(Arrays.equals(el, aSingleShot)){
+                return true;
+            }
+        }
+        return false; // default : false - which means a shot doesn't hit the right coordinates.
+    };
+
+    //(4) In the middle of duel, Use this method to print game boards to the console.
+    // You are able to see whole map each player's impacted ground-zero("O") and destroyed ships("X")
+    // That is why printBattleShip get argument as 'char Array'.
     private static void printBattleShip(char[][] player) {
-        System.out.print("  "); //첫줄은 일단 한 칸을 비우자.
+        System.out.print("  "); // First row, should be blank.
         for (int row = -1; row < 5; row++) {
             if (row > -1) {
-                System.out.print(row + " "); //두번째줄부터 5번째 줄까지는 row 숫자를 적어주자.
+                System.out.print(row + " "); //From Second row to 5th row, draw row number.
             }
             for (int column = 0; column < 5; column++) {
                 if (row == -1) {
-                    System.out.print(column + " "); //첫줄은 column 만 적어주자.
+                    System.out.print(column + " "); // FirstRow - column name
                 } else {
-                    System.out.print(player[row][column] + " "); // 두번재 줄부터 이미 불러온 player 좌표 모양을 박아주자.
+                    System.out.print(player[row][column] + " "); // From the second row, you can put coordinates of players.
                 }
             }
             System.out.println("");
         }
     }
-
 
 
 }
