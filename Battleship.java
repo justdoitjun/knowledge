@@ -3,7 +3,7 @@ package newHW03;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class BattleShip {
+public class Battleship {
 // main method
     public static void main(String[] args) {
         System.out.println("Welcome to Battleship!");
@@ -198,6 +198,5 @@ public class BattleShip {
             System.out.println("");
         }
     }
-
-
+    
 }
