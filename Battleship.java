@@ -13,9 +13,8 @@ public class Battleship {
         Scanner sc = new Scanner(System.in);
         // Initial coordinates designation (player1 & player2)
         do {
-            player++;
+            player ++; //first do loop
             System.out.printf("PLAYER %d, ENTER YOUR SHIPS’ COORDINATES.", player);
-            //String resultHistory = ""; //resultHistory is String type variance.
             int[][] resultHistory = new int[5][2];
             int input1;
             int input2;
@@ -30,7 +29,7 @@ public class Battleship {
                     System.out.println("Invalid coordinates. Choose different coordinates.");
                     i += 0;
                 }
-                if (checkInteger(input1, input2, resultHistory).equals("E002")) {
+                else if (checkInteger(input1, input2, resultHistory).equals("E002")) {
                     System.out.println("You already have a ship there. Choose different coordinates.");
                     i += 0;
                 }
@@ -198,5 +197,5 @@ public class Battleship {
             System.out.println("");
         }
     }
-    
+
 }
