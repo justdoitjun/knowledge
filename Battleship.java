@@ -17,6 +17,9 @@ public class Battleship {
             player ++; //first do loop
             System.out.printf("PLAYER %d, ENTER YOUR SHIPS’ COORDINATES.", player);
             int[][] resultHistory = new int[5][2];
+            for(int[] e : resultHistory){           //강제 초기화
+                Arrays.fill(e , 7);
+            }
             int input1;
             int input2;
             //Num A
@@ -50,7 +53,7 @@ public class Battleship {
     //duel
 
     public static void duel(int[][] player1ResultHistory, int[][] player2ResultHistory){
-        Scanner sc = new Scanner(System.in);
+        Scanner scs = new Scanner(System.in);
         //////////////////// duel
         boolean destroyed = false; // If it went "true", a ship of partner is destroyed. -> display"O" sign on map.
         int cnt1 = 1;//count number
@@ -66,8 +69,8 @@ public class Battleship {
         int duelPlayer = 1; // duelPlayer 1 means player1 is choosing a shot.
         for(int cnt = 1 ;      ; cnt++){
             System.out.printf("Player %d, enter hit row/column:\n", duelPlayer);
-            int duelInput1 = sc.nextInt();
-            int duelInput2 = sc.nextInt();
+            int duelInput1 = scs.nextInt();
+            int duelInput2 = scs.nextInt();
             boolean checkDuelInteger = false;
             //duel check Integer
             if(duelPlayer == 1) {
@@ -150,7 +153,7 @@ public class Battleship {
             error = false;
         }
         for(int[] el : resultHistory){
-            if(Arrays.equals(el, testInput) && el[0] != 0 && el[1] != 0){
+            if(Arrays.equals(el, testInput)){
                 // the reason why I check el's components : because I want to allow [0,0]
                 System.out.println("You already have a ship there. Choose different coordinates.");
                 error = false;
@@ -158,6 +161,11 @@ public class Battleship {
         }
         return error;
     };
+    ///////왜 (0, 0)을 넣으면 중복되었다는 에러가 나올까요?
+    /// 참고로 기본타입(Primitive type)의 배열인 경우 초기값을 가지고 있는 반면에(int = 0)
+    // 참조타입(Reference type)의 배열을 선언했을 경우 배열내 엘리먼트의 초기값이 null임을 주의하셔야 합니다.
+
+
 
     //(2) input Error check : whether It is invalid coordinates or have already putted on same spot.
     public static boolean checkDuelInteger(int input1, int input2, int[][] resultHistory){
